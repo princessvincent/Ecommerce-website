@@ -14,4 +14,4 @@ Users can add product to cart directly from wishlist
 
 and some other amazing features visit the page below and check it out
 
-eshop.priscaebuka.com.ng
+hosted link: eshop.priscaebuka.com.ng
