@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use auth;
+// use auth;
 use App\Models\User;
 use App\Models\order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $order = order::where('user_id', auth::user()->id)->get();
+        $order = order::where('user_id', Auth::user()->id)->get();
         return view('orders.index', compact('order'));
     }
     public function view($id){

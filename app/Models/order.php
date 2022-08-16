@@ -22,6 +22,8 @@ class order extends Model
         'state',
         'country',
         'pincode',
+        'payment_mode',
+        'payment_id',
         'status',
         'message',
         'total_price',

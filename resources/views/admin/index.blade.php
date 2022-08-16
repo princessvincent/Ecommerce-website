@@ -1,39 +1,93 @@
+@php
+if (Auth::user()->role_as == '0') {
+    return redirect('/')->with('status', 'Access Denied! as you are not as admin');
+}
+@endphp
 
-<!--
-=========================================================
-* Material Dashboard 2 - v3.0.2
-=========================================================
+@extends('layouts.head')
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+@section('title', 'Dashboard')
 
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <title>
-   E-Shop
-  </title>
-   @extends('layouts.head')
 @section('content')
-    <div class="card">
-    <div class="card-body">
-    <h1> prisca Ebuka</h1>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (session('status'))
+        <script>
+            swal("{{ session('status') }}");
+        </script>
+    @endif
+
+    <div class="row my-5" style="margin-left:40px;">
+       <div class="col-md-3">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+
+                    Total Users
+                    <h2>{{ $users }}</h2>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link  text-decoration-none" href="{{ url('users') }}">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">
+                    Total Products
+                    <h2>{{ $prod }}</h2>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link  text-decoration-none" href="{{ url('prods') }}">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-3">
+            <div class="card bg-secondary text-white mb-4">
+                <div class="card-body">
+                    Total Categories
+                    <h2>{{ $categ }}</h2>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link  text-decoration-none" href="{{ url('cat') }}">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-3">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">
+                  Total Completed Orders
+                    <h2>{{  $completed_order }}</h2>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link text-decoration-none" href="{{ url('order_history') }}">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">
+                    Total New Orders
+                    <h2>{{ $uncompleted_order }}</h2>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link  text-decoration-none" href="{{ url('orders') }}">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    </div>
-
-@endsection 
-</body>
-
-</html>
+@endsection
+{{-- @endsection --}}

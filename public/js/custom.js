@@ -1,6 +1,8 @@
 // @section('script')
 
 $(document).ready(function() {
+    loadcart()
+    loadwish()
 
     $('.addtocart').click(function(e) {
         e.preventDefault();
@@ -15,7 +17,7 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        
         $.ajax({
             method: "POST",
             url: "/addto_cart",
@@ -25,6 +27,7 @@ $(document).ready(function() {
             },
             
             success: function(response) {
+                loadcart()
                 Swal.fire(response.status);
             }
 
@@ -33,6 +36,36 @@ $(document).ready(function() {
 
 
     });
+
+ function loadcart()
+ {
+    $.ajax({
+        method: "GET",
+        url: "/load-cart",
+        success: function(response) {
+             $('.cart-count').html('');
+            $('.cart-count').html(response.count);
+
+            // Swal.fire(response.count);
+        }
+
+    })
+    }
+
+    function loadwish()
+ {
+    $.ajax({
+        method: "GET",
+        url: "/load-wish",
+        success: function(response) {
+             $('.wish-count').html('');
+            $('.wish-count').html(response.count);
+
+            // Swal.fire(response.count);
+        }
+
+    })
+    }
 
     $('.addtowish').click(function(e) {
         e.preventDefault();
@@ -53,6 +86,7 @@ $(document).ready(function() {
             },
             
             success: function(response) {
+                loadwish()
                 Swal.fire(response.status);
             }
 

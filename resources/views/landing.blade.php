@@ -17,13 +17,12 @@
         </div>
     </div>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@if(session('status'))
-   <script> 
-   swal("{{ session('status') }}");
-   
-   </script> 
-@endif
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (session('status'))
+        <script>
+            swal("{{ session('status') }}");
+        </script>
+    @endif
     <div class="py-5">
         <div class="container">
             <div class="row">
@@ -32,17 +31,20 @@
                 </strong>
                 <div class="owl-carousel owl-theme">
                     @foreach ($trend as $trends)
-                        <div class="item">
-                            <div class="card">
-                                <img src="{{ asset('img/product/' . $trends->image) }}" alt="Product Image"
-                                    style="height: 500px;">
-                                <div class="card-body">
-                                    <h5>{{ $trends->name }}</h5>
-                                    <span class="float-start">{{ $trends->selling_price }}</span>
-                                     <span class="float-end"> <s>{{ $trends->original_price }} </s></span>
+                        <a href="{{ url('view-category/' . $trends->category->slug . '/' . $trends->slug) }}"
+                            class="text-decoration-none">
+                            <div class="item">
+                                <div class="card">
+                                    <img src="{{ asset('img/product/' . $trends->image) }}" alt="Product Image"
+                                        style="height: 500px;">
+                                    <div class="card-body">
+                                        <h5>{{ $trends->name }}</h5>
+                                        <span class="float-start">{{ $trends->selling_price }}</span>
+                                        <span class="float-end"> <s>{{ $trends->original_price }} </s></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>
@@ -59,20 +61,22 @@
                 </strong>
                 <div class="owl-carousel owl-theme">
                     @foreach ($catrend as $catrends)
-                     <a href="{{ url('view-category/'.$catrends->slug) }}" class="text-decoration-">
-                        <div class="item">
-                            <div class="card">
-                                <img src="{{ asset('img/category/' . $catrends->image) }}" alt="Product Image"
-                                    style="height: 500px;">
-                                <div class="card-body">
-                                    <h5>{{ $catrends->name }}</h5>
-                                    <p class="float-start">{{ $catrends->description }}</p>
-                                     {{-- <span class="float-end"> <s>{{ $trends->original_price }} </s></span> --}}
+                        <a href="{{ url('view-category/' . $catrends->slug) }}" class="text-decoration-none">
+                            <div class="item">
+                                <div class="card">
+                                    <img src="{{ asset('img/category/' . $catrends->image) }}" alt="Product Image"
+                                        style="height: 500px;">
+                                    <div class="card-body">
+                                        <h5>{{ $catrends->name }}</h5>
+                                        <p class="float-start">{{ $catrends->description }}</p>
+                                        {{-- <span class="float-end"> <s>{{ $trends->original_price }} </s></span> --}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </a>
                     @endforeach
+
+
                 </div>
             </div>
         </div>
@@ -81,23 +85,30 @@
 
 
 @section('script')
+    {{-- <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script> --}}
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script>
-        $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: true,
-            dots: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 3
+        $(document).ready(function() {
+
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 3
+                    }
                 }
-            }
-        })
+            })
+        });
     </script>
+
+     
 @endsection

@@ -7,12 +7,18 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Material Dashboard 2 by Creative Tim
+       E-shop
     </title>
     @extends('layouts.head')
     @section('content')
         <div class="card">
 
+@php
+   if(Auth::user()->role_as == '0')
+   {
+      return redirect('/')->with('status','Access Denied! as you are not as admin');
+   }
+@endphp
         {{-- @if(session()->has('cat'))
             <div class="alert alert-success">
             {{ session()->get('cat') }}

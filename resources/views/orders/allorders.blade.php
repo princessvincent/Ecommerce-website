@@ -1,3 +1,10 @@
+@php
+   if(Auth::user()->role_as == '0')
+   {
+      return redirect('/')->with('status','Access Denied! as you are not as admin');
+   }
+@endphp
+
 @extends('layouts.head')
 @section('content')
     <div class="container">

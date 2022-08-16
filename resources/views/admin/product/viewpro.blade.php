@@ -1,3 +1,10 @@
+@php
+   if(Auth::user()->role_as == '0')
+   {
+      return redirect('/')->with('status','Access Denied! as you are not as admin');
+   }
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 

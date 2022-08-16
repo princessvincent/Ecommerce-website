@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use auth;
+// use auth;
 use App\Models\cart;
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -46,7 +47,7 @@ if($prod_check){
        }
     }
 public function viewcart(){
-    $cart = cart::where('user_id', auth::user()->id)->get();
+    $cart = cart::where('user_id', Auth::user()->id)->get();
     return view('cart.viewcart', compact('cart'));
 }
 
@@ -84,6 +85,14 @@ return response()->json(['status' => 'Product Successfully Removed from cart']);
        }
 }
 
+public function cartcount()
+{
+    $cartcount = cart::where('user_id', Auth::user()->id)->count();
+
+    return response()->json([
+        'count' => $cartcount,
+    ]);
+}
 
 }
 

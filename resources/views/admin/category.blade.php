@@ -1,3 +1,10 @@
+@php
+   if(Auth::user()->role_as == '0')
+   {
+      return redirect('/')->with('status','Access Denied! as you are not as admin');
+   }
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,33 +29,7 @@
    </script> 
 @endif
 
-        {{-- @if(session()->has('upcat'))
-            <div class="alert alert-success">
-            {{ session()->get('upcat') }}
-            </div>
-        
-        @endif
-
-          @if(session()->has('upc'))
-            <div class="alert alert-danger">
-            {{ session()->get('upc') }}
-            </div>
-        
-        @endif
-
-         @if(session()->has('updecat'))
-            <div class="alert alert-success">
-            {{ session()->get('updecat') }}
-            </div>
-        
-        @endif
-
-          @if(session()->has('dec'))
-            <div class="alert alert-danger">
-            {{ session()->get('dec') }}
-            </div>
-        
-        @endif --}}
+       
             <div class="card-body">
                 <div class="card-header"><h3> <strong>List Of Categories</strong></h3></div>
 
